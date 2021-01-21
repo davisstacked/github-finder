@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export class UserItem extends Component {
-
-    render() {
-        const { login, avatar_url, html_url } = this.props.user;
+const UserItem = ({user: { login, avatar_url, html_url }}) => {
 
         return (
             <div className="card text-center">
@@ -14,9 +12,12 @@ export class UserItem extends Component {
                     <a href={html_url} className="btn btn-dark btn-sm my-1">More</a>
                 </div>
             </div>
-        )
-    }
-}
- 
+        );
+    
+};
 
-export default UserItem
+UserItem.propTypes = {
+    user: PropTypes.object.isRequired,
+}
+
+export default UserItem;
