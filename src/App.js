@@ -15,23 +15,9 @@ import './App.css';
 
 const App = () => {
   // state, function to change state = useState(initial state)
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
-
-
-  // Get single Github user
-  const getUser = async (username) => {
-    setLoading(true);
-
-    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-
-    setUser(res.data);
-    setLoading(false);
-  }; 
 
   // Get user's repos
   const getUserRepos = async (username) => {
@@ -81,11 +67,8 @@ const App = () => {
               render={props => (
               <User 
                 { ...props } 
-                getUser={getUser} 
-                getUserRepos={getUserRepos}
-                user={user} 
+                getUserRepos={getUserRepos} 
                 repos={repos}
-                loading={loading} 
               />
             )} 
             />
